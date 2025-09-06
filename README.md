@@ -67,17 +67,17 @@ Build and deploy to AWS S3:
 
 ### Automated Deployment
 
-Create a `deploy.sh` script:
+Edit the `deploy.sh` script:
 ```bash
 #!/bin/bash
 npm run build
 aws s3 sync build/ s3://react-app-bucket-YOUR-ACCOUNT-ID-YOUR-REGION --delete
 aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths "/*"
-
 ```
+
 NOTE: When your cdk deploy completes you'll need to grab:
-`ReactAppStack.S3BucketName` and  replace the bucket on line 3 of the `deploy.sh` file
-NOTE: you will need to update the distribution-id in the `deploy.sh` file as well. You can get that from the CloudFormation service in the AWS console. Grab the most recent distribution-id.
+`ReactAppStack.S3BucketName` and  replace the bucket (line 3) of the `deploy.sh` file
+NOTE: you will need to update the distribution-id (line 4) of the `deploy.sh` file as well. You can get that from the CloudFormation service in the AWS console. Grab the most recent distribution-id.
 
 Make it executable and run:
 ```bash
